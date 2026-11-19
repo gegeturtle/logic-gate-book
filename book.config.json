@@ -1,0 +1,18 @@
+{
+  "cover": {
+    "icon": "assets/book-icon.svg",
+    "title": "Hello, world!",
+    "subtitle": "A little book",
+    "favicon": "assets/favicon.svg"
+  },
+  "pages": [
+    {
+      "left": "pages/hello-left.html",
+      "right": "pages/hello-right.html"
+    },
+    {
+      "left": "pages/ending-left.html",
+      "right": "pages/ending-right.html"
+    }
+  ]
+}
