@@ -1,18 +1,38 @@
 {
   "cover": {
     "icon": "assets/book-icon.svg",
-    "title": "Hello, world!",
-    "subtitle": "A little book",
+    "title": "Logic Gates!",
+    "subtitle": "Press buttons. Light lamps. Explore logic.",
     "favicon": "assets/favicon.svg"
   },
   "pages": [
     {
-      "left": "pages/hello-left.html",
-      "right": "pages/hello-right.html"
+      "left": "pages/not-left.html",
+      "right": "pages/not-right.html"
     },
     {
-      "left": "pages/ending-left.html",
-      "right": "pages/ending-right.html"
+      "left": "pages/and-left.html",
+      "right": "pages/and-right.html"
+    },
+    {
+      "left": "pages/or-left.html",
+      "right": "pages/or-right.html"
+    },
+    {
+      "left": "pages/nand-left.html",
+      "right": "pages/nand-right.html"
+    },
+    {
+      "left": "pages/nor-left.html",
+      "right": "pages/nor-right.html"
+    },
+    {
+      "left": "pages/xor-left.html",
+      "right": "pages/xor-right.html"
+    },
+    {
+      "left": "pages/xnor-left.html",
+      "right": "pages/xnor-right.html"
     }
   ]
 }

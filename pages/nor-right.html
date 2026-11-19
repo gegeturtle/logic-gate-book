@@ -1,0 +1,12 @@
+<section class="gate-demo" data-gate="NOR" role="group" aria-label="NOR gate circuit demonstration">
+  <p class="demo-heading">Press either button</p>
+  <svg class="circuit-svg" viewBox="0 0 360 200" role="group" aria-label="Buttons A and B connect to a NOR gate and a lamp">
+    <path class="wire" d="M72 70H94V80H130M72 130H94V120H130M229 100H307"/>
+    <path class="gate-shape" d="M130 55Q155 100 130 145Q180 145 215 100Q180 55 130 55Z"/><circle class="gate-bubble" cx="222" cy="100" r="7"/>
+    <text class="gate-label" x="163" y="104">OR</text>
+    <g class="svg-input-button" data-input="A" role="button" tabindex="0" aria-pressed="false" aria-label="Input A, off"><rect class="button-housing" x="14" y="42" width="58" height="56" rx="9"/><rect class="button-cap" x="27" y="50" width="32" height="25" rx="8"/><text class="button-label" x="43" y="111">A</text><text class="input-state" x="43" y="124">OFF</text></g>
+    <g class="svg-input-button" data-input="B" role="button" tabindex="0" aria-pressed="false" aria-label="Input B, off"><rect class="button-housing" x="14" y="102" width="58" height="56" rx="9"/><rect class="button-cap" x="27" y="110" width="32" height="25" rx="8"/><text class="button-label" x="43" y="171">B</text><text class="input-state" x="43" y="184">OFF</text></g>
+    <g class="svg-lamp" role="img" aria-label="Lamp off"><circle class="lamp-glass" cx="326" cy="100" r="19"/><path class="lamp-filament" d="m319 100 5-6 5 12 5-6M318 122h16m-13 5h10"/><text class="lamp-text" x="326" y="153">LAMP</text></g>
+  </svg>
+  <p class="demo-result" aria-live="polite"></p>
+</section>

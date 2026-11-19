@@ -1,0 +1,20 @@
+<section class="gate-demo" data-gate="NOT" role="group" aria-label="NOT gate circuit demonstration">
+  <p class="demo-heading">Press button A</p>
+  <svg class="circuit-svg" viewBox="0 0 360 200" role="group" aria-label="Button A connects to a NOT gate and a lamp">
+    <path class="wire" d="M72 100H130M210 100H304"/>
+    <path class="gate-shape" d="M130 62 130 138 205 100Z"/>
+    <circle class="gate-bubble" cx="212" cy="100" r="7"/>
+    <text class="gate-label" x="157" y="104">NOT</text>
+    <g class="svg-input-button" data-input="A" role="button" tabindex="0" aria-pressed="false" aria-label="Input A, off">
+      <rect class="button-housing" x="14" y="67" width="58" height="66" rx="10"/>
+      <rect class="button-cap" x="27" y="77" width="32" height="28" rx="8"/>
+      <text class="button-label" x="43" y="151">A</text><text class="input-state" x="43" y="166">OFF</text>
+    </g>
+    <g class="svg-lamp" role="img" aria-label="Lamp off">
+      <circle class="lamp-glass" cx="326" cy="100" r="19"/>
+      <path class="lamp-filament" d="m319 100 5-6 5 12 5-6M318 122h16m-13 5h10"/>
+      <text class="lamp-text" x="326" y="153">LAMP</text>
+    </g>
+  </svg>
+  <p class="demo-result" aria-live="polite"></p>
+</section>

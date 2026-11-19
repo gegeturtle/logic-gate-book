@@ -15,6 +15,56 @@ function setPageNumber(selector, value) {
   document.querySelector(selector).textContent = value == null ? "" : String(value);
 }
 
+function outputFor(gate, inputs) {
+  const [a, b] = inputs;
+  switch (gate) {
+    case "NOT": return !a;
+    case "AND": return a && b;
+    case "OR": return a || b;
+    case "NAND": return !(a && b);
+    case "NOR": return !(a || b);
+    case "XOR": return a !== b;
+    case "XNOR": return a === b;
+    default: return false;
+  }
+}
+
+function initializeDemos(root) {
+  root.querySelectorAll(".gate-demo").forEach((demo) => {
+    const buttons = [...demo.querySelectorAll(".svg-input-button")];
+    const lamp = demo.querySelector(".svg-lamp");
+    const result = demo.querySelector(".demo-result");
+
+    const update = () => {
+      const inputs = buttons.map((button) => button.getAttribute("aria-pressed") === "true");
+      const output = outputFor(demo.dataset.gate, inputs);
+      lamp.classList.toggle("is-on", output);
+      lamp.setAttribute("aria-label", `Lamp ${output ? "on" : "off"}`);
+      result.textContent = `The lamp is ${output ? "on" : "off"}.`;
+      buttons.forEach((button) => {
+        const isOn = button.getAttribute("aria-pressed") === "true";
+        button.querySelector(".input-state").textContent = isOn ? "ON" : "OFF";
+        button.setAttribute("aria-label", `Input ${button.dataset.input}, ${isOn ? "on" : "off"}`);
+      });
+    };
+
+    buttons.forEach((button) => {
+      const toggle = () => {
+        button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") !== "true");
+        update();
+      };
+      button.addEventListener("click", toggle);
+      button.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggle();
+        }
+      });
+    });
+    update();
+  });
+}
+
 async function loadPage(path) {
   const response = await fetch(new URL(path, configUrl));
   if (!response.ok) throw new Error(`Could not load page: ${path}`);
@@ -29,6 +79,7 @@ async function renderSpread(direction = null) {
   ]);
   leftContent.innerHTML = leftHtml;
   rightContent.innerHTML = rightHtml;
+  initializeDemos(rightContent);
   spreadElement.classList.remove("turn-next", "turn-previous");
   if (direction) {
     const turningPage = spreadElement.querySelector(direction === "next" ? ".page:last-child" : ".page:first-child");
@@ -37,8 +88,8 @@ async function renderSpread(direction = null) {
     await new Promise((resolve) => turningPage.addEventListener("animationend", resolve, { once: true }));
     spreadElement.classList.remove("turn-next", "turn-previous");
   }
-  setPageNumber("#left-number", spreadIndex === 0 ? "" : spreadIndex * 2);
-  setPageNumber("#right-number", spreadIndex * 2 + 1);
+  setPageNumber("#left-number", spreadIndex * 2 + 1);
+  setPageNumber("#right-number", spreadIndex * 2 + 2);
   previousButton.textContent = spreadIndex === 0 ? "← Close" : "← Previous";
   previousButton.setAttribute("aria-label", spreadIndex === 0 ? "Close the book" : "Previous page");
   previousButton.disabled = false;
@@ -68,7 +119,8 @@ async function initializeBook() {
     document.querySelector("#cover-icon").src = new URL(config.cover.icon, configUrl);
     document.querySelector("#cover-title").textContent = config.cover.title;
     document.querySelector("#cover-subtitle").textContent = config.cover.subtitle;
-    document.querySelector("#site-favicon").href = new URL(config.cover.favicon, configUrl);
+    const faviconLink = document.querySelector("#site-favicon");
+    faviconLink.href = new URL(config.cover.favicon, configUrl).href;
     document.title = `${config.cover.title} — ${config.cover.subtitle}`;
     await renderSpread();
   } catch (error) {
